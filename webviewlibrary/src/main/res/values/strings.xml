@@ -1,0 +1,36 @@
+<resources>
+
+    <string name="js_format">
+
+        var success = {};
+
+        function appservice(component,action,params,callBack) {
+            if(callBack){
+                success[component + action] = callBack;
+            }
+            window.AndroidH5.toAndroidMethod(component,action,params);
+
+        }
+
+        function jsalert(component,action,data){
+            var bb = typeof component;
+            alert(bb);
+            alert(\"调用----》\" + component);
+            alert(\"调用----》\" + action);
+            alert(\"调用----》\" + data);
+            alert(\"调用----》\" + data.error);
+            alert(\"调用----》\" + data.msg);
+            alert(\"调用----》\" + data.content.size);
+        }
+
+        function callbacks(component,action,data){
+            var call = success[component + action];
+            if(call){
+                call(data);
+            }
+        }
+
+    </string>
+
+
+</resources>

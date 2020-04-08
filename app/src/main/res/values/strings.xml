@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Webviewdemo</string>
+
+
+    <string name="ServiceUrl">http://t.h.xgame999.com/appservice.html</string>
+
+</resources>
