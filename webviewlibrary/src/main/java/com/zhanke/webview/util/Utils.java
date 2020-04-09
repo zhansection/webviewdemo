@@ -20,8 +20,6 @@ import android.os.Environment;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.FileProvider;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -39,6 +37,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 /**
  * Created by zhanke on 2020/3/9.
@@ -70,10 +71,11 @@ public class Utils {
      */
     public static void apkInstall(Context context, File file) {
         if (context == null || !file.exists()) {
-            //ToastUtils.showToast("没有找到安装包");
+            Log.i("ZkWebview","not file find！");
             return;
         }
         Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //判读版本是否在7.0以上
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
            // LogUtils.e("7.0以上，正在安装apk...");
@@ -84,7 +86,6 @@ public class Utils {
            // LogUtils.e("7.0以下，正在安装apk...");
             intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
         }
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 
@@ -164,7 +165,6 @@ public class Utils {
 
     public static int[] getDevice(Context context){
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-      //  screenHeight = displayMetrics.heightPixels;
         int[] device = {displayMetrics.widthPixels,displayMetrics.heightPixels};
         return device;
     }

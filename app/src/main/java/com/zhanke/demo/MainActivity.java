@@ -9,8 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -21,7 +19,6 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.zxing.activity.CaptureActivity;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.zhanke.demo.dialog.WaitPorgressDialog;
 import com.zhanke.webview.ZkWebview;
@@ -46,6 +43,8 @@ import com.zhanke.webview.util.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import io.reactivex.functions.Consumer;
 
 
@@ -431,8 +430,8 @@ public class MainActivity extends AppCompatActivity {
                             function.onCallBack(Utils.toJson(baseBean));
                         }
                     });
-                    Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
-                    startActivityForResult(intent, Utils.REQ_QR_CODE);
+//                    Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
+//                    startActivityForResult(intent, Utils.REQ_QR_CODE);
                 } else {
                     baseBean.setFail();
                     function.onCallBack(Utils.toJson(baseBean));
