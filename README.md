@@ -19,7 +19,7 @@ dependencies {
 
 ## Usage
 
-To prevent WebView memory leak, use dynamic addition
+Android To prevent WebView memory leak, use dynamic addition
 
 Create a `ZkWebView` instance :
 
@@ -58,5 +58,44 @@ protected void onDestroy() {
     super.onDestroy();
 
 }
+```
+
+Js instructions for use:
+
+**Call method：**
+
+```
+appservice(component, action, params, callback)
+```
+
+**Parameter description：**
+
+```
+"component" : "组件名称",
+"action"    : "方法名称",
+"params"    : {具体参数列表json对象}
+"callback"  : 回调
+```
+
+**callback  The unified format of the returned result JSON is as follows:**
+
+```json
+{
+    "error":0, //错误码，0为成功
+    "msg":"success", //错误信息
+    "content":{ //返回的结果，json格式
+    }
+}
+```
+
+**Call example：**
+
+```javascript
+// 获取设备信息
+appservice('common', 'getDeviceInfo', null, function(res) {
+    if (res && res.error==0) {
+        consolo.log('设备id', res.data.deviceId)
+    }
+})
 ```
 
