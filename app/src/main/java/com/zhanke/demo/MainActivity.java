@@ -23,25 +23,25 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.zxing.activity.CaptureActivity;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.zhanke.demo.bean.BaseBean;
+import com.zhanke.demo.bean.android.AppInfoBean;
+import com.zhanke.demo.bean.android.ButtonConfigBean;
+import com.zhanke.demo.bean.android.ClipboardBean;
+import com.zhanke.demo.bean.android.ContactListBean;
+import com.zhanke.demo.bean.android.DataCacheBean;
+import com.zhanke.demo.bean.android.LocationBean;
+import com.zhanke.demo.bean.android.SmsInfoBean;
+import com.zhanke.demo.bean.js.AlertHintBean;
+import com.zhanke.demo.bean.js.JumpBean;
+import com.zhanke.demo.bean.js.ToastMsgBean;
 import com.zhanke.demo.dialog.WaitPorgressDialog;
+import com.zhanke.demo.listener.PermissonListener;
+import com.zhanke.demo.util.CleanDataUtils;
+import com.zhanke.demo.util.Utils;
 import com.zhanke.webview.ZkWebview;
-import com.zhanke.webview.bean.BaseBean;
-import com.zhanke.webview.bean.android.AppInfoBean;
-import com.zhanke.webview.bean.android.ButtonConfigBean;
-import com.zhanke.webview.bean.android.ClipboardBean;
-import com.zhanke.webview.bean.android.ContactListBean;
-import com.zhanke.webview.bean.android.DataCacheBean;
-import com.zhanke.webview.bean.android.LocationBean;
-import com.zhanke.webview.bean.android.SmsInfoBean;
-import com.zhanke.webview.bean.js.AlertHintBean;
-import com.zhanke.webview.bean.js.JumpBean;
-import com.zhanke.webview.bean.js.ToastMsgBean;
 import com.zhanke.webview.listener.CallBackFunction;
 import com.zhanke.webview.listener.JsHandler;
-import com.zhanke.webview.listener.PermissonListener;
-import com.zhanke.webview.util.CleanDataUtils;
 import com.zhanke.webview.util.MResource;
-import com.zhanke.webview.util.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         flvWeb.addView(webView);
 
+        //optimize bugs and dependencies
         //获取设备信息 webview and js interactive project construction
         webView.registerHandler("Common","getDeviceInfo", new JsHandler() {
             @Override

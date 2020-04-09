@@ -1,4 +1,4 @@
-package com.zhanke.webview.util;
+package com.zhanke.demo.util;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -28,9 +28,9 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.zhanke.webview.bean.BaseBean;
-import com.zhanke.webview.bean.android.ContactListBean;
-import com.zhanke.webview.bean.android.LocationBean;
+import com.zhanke.demo.bean.BaseBean;
+import com.zhanke.demo.bean.android.ContactListBean;
+import com.zhanke.demo.bean.android.LocationBean;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -39,6 +39,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+
+
 
 /**
  * Created by zhanke on 2020/3/9.
@@ -74,6 +77,7 @@ public class Utils {
             return;
         }
         Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //判读版本是否在7.0以上
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
            // LogUtils.e("7.0以上，正在安装apk...");
@@ -84,7 +88,6 @@ public class Utils {
            // LogUtils.e("7.0以下，正在安装apk...");
             intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
         }
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 

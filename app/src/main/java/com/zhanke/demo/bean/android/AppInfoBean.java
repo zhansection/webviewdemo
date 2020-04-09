@@ -1,4 +1,4 @@
-package com.zhanke.webview.bean.android;
+package com.zhanke.demo.bean.android;
 
 /**
  * Created by zhanke on 2020/3/9.

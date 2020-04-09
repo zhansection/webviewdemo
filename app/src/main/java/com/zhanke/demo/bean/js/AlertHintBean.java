@@ -1,4 +1,4 @@
-package com.zhanke.webview.bean.js;
+package com.zhanke.demo.bean.js;
 
 /**
  * Created by zhanke on 2020/3/13.

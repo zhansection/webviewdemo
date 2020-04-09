@@ -1,4 +1,4 @@
-package com.zhanke.webview.util;
+package com.zhanke.demo.util;
 
 import android.content.Context;
 import android.database.ContentObserver;
