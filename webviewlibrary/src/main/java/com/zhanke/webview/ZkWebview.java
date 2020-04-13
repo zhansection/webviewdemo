@@ -89,7 +89,7 @@ public class ZkWebview extends WebView {
         setWebChromeClient(new WebChromeClient());
     }
 
-    public void callJs(final String common, final String action, final String data){
+    private  void callJs(final String common, final String action, final String data){
         post(new Runnable() {
             @Override
             public void run() {
