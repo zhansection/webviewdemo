@@ -43,6 +43,21 @@ webView.registerHandler("UI","toast", new JsHandler() {
         });
 ```
 
+OR
+
+```
+webView = findViewById(R.id.zWebView);
+//注册
+webView.registerHandler("UI","toast", new JsHandler() {
+            @Override
+            public void onJsHandler(String responseData, CallBackFunction function) {
+            	Log.i("z","接收到的数据（可以是json字符串）-->" + responseData);
+            	function.onCallBack("回调的参数");
+            }
+        });
+```
+
+
 Destroy webview
 
 ```
