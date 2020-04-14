@@ -5,11 +5,11 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebSettings;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 import com.zhanke.webview.listener.CallBackFunction;
 import com.zhanke.webview.listener.JsHandler;
 import com.zhanke.webview.util.MResource;
@@ -26,9 +26,7 @@ public class ZkWebview extends WebView {
     private JsMethodInterface jsMethodInterface;
 
     public ZkWebview(Context context) {
-        super(context);
-        init();
-        initJs();
+        this(context,null);
     }
 
     public ZkWebview(Context context, AttributeSet attrs) {
@@ -57,16 +55,17 @@ public class ZkWebview extends WebView {
         webSetting.setAllowFileAccess(true);
         webSetting.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         webSetting.setSupportZoom(true);
-        webSetting.setBuiltInZoomControls(false);
+        webSetting.setBuiltInZoomControls(true);
         webSetting.setSupportMultipleWindows(true);
         webSetting.setLoadWithOverviewMode(true);
+        webSetting.setUseWideViewPort(true);
         webSetting.setAppCacheEnabled(true);
-        webSetting.setDatabaseEnabled(true);
+        //webSetting.setDatabaseEnabled(true);
         webSetting.setDomStorageEnabled(true);
         webSetting.setGeolocationEnabled(true);
         webSetting.setAppCacheMaxSize(Long.MAX_VALUE);
         webSetting.setPluginState(WebSettings.PluginState.ON_DEMAND);
-        webSetting.setRenderPriority(WebSettings.RenderPriority.HIGH);
+        //webSetting.setRenderPriority(WebSettings.RenderPriority.HIGH);
         webSetting.setCacheMode(WebSettings.LOAD_NO_CACHE);
 
         //设置Web视图
@@ -103,6 +102,25 @@ public class ZkWebview extends WebView {
         jsMethodInterface.addJsHandlerMap(common + method,jsHandler);
     }
 
+    @Override
+    public void loadUrl(String s) {
+        super.loadUrl(s);
+    }
+
+    @Override
+    public void goBack() {
+        super.goBack();
+    }
+
+    @Override
+    public boolean canGoBack() {
+        return super.canGoBack();
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+    }
 
     class JsMethodInterface{
 

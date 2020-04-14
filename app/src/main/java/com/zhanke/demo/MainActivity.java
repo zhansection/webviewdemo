@@ -15,8 +15,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
@@ -51,7 +49,7 @@ import io.reactivex.functions.Consumer;
 
 public class MainActivity extends AppCompatActivity {
 
-    ZkWebview webView;
+    ZkWebview zWebView;
     WaitPorgressDialog mWaitPorgressDialog;
     Handler handler;
     RxPermissions rxPermissions;
@@ -70,13 +68,15 @@ public class MainActivity extends AppCompatActivity {
 
         mWaitPorgressDialog = new WaitPorgressDialog(MainActivity.this);
         handler = new Handler(Looper.myLooper());
-        webView=new ZkWebview(MainActivity.this);
-
-        flvWeb.addView(webView);
-
+        //zWebView = new ZkWebview(MainActivity.this);
+        zWebView = findViewById(R.id.zWebView);
+        //flvWeb.addView(zWebView);
+//        flvWeb.addView(zWebView, new FrameLayout.LayoutParams(
+//                    FrameLayout.LayoutParams.MATCH_PARENT,
+//                FrameLayout.LayoutParams.MATCH_PARENT));
         //optimize bugs and dependencies
-        //获取设备信息 webview and js interactive project construction
-        webView.registerHandler("Common","getDeviceInfo", new JsHandler() {
+        //获取设备信息 zWebView and js interactive project construction
+        zWebView.registerHandler("Common","getDeviceInfo", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 Log.e("zz","getDeviceInfo-->" + responseData);
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //把内容放到剪贴板中
-        webView.registerHandler("Common","setClipboard", new JsHandler() {
+        zWebView.registerHandler("Common","setClipboard", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 Log.e("zz","setClipboard-->" + responseData);
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         });
         //二维码
         //得到剪贴板内容A Android library for qrcode scanning and generating, depends on zxing library
-        webView.registerHandler("Common","getClipboard", new JsHandler() {
+        zWebView.registerHandler("Common","getClipboard", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 Log.e("zz","getClipboard-->" + responseData);
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //获取应用缓存
-        webView.registerHandler("Common","getCacheSize", new JsHandler() {
+        zWebView.registerHandler("Common","getCacheSize", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 Log.e("zz","getCacheSize-->" + responseData);
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //清除应用缓存
-        webView.registerHandler("Common","clearCache", new JsHandler() {
+        zWebView.registerHandler("Common","clearCache", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 Log.e("zz","clearCache-->" + responseData);
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //打开外部浏览器
-        webView.registerHandler("Common","jumpBrowser", new JsHandler() {
+        zWebView.registerHandler("Common","jumpBrowser", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 Log.e("zz","jumpBrowser-->" + responseData);
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //截屏并保存图片
-        webView.registerHandler("Common","saveImg", new JsHandler() {
+        zWebView.registerHandler("Common","saveImg", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 Log.e("zz","saveImg-->" + responseData);
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //获取联系人列表
-        webView.registerHandler("Common","getContactList", new JsHandler() {
+        zWebView.registerHandler("Common","getContactList", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 //TODO 权限没有适配
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //获取短信验证码
-        webView.registerHandler("Common","getSms", new JsHandler() {
+        zWebView.registerHandler("Common","getSms", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 //TODO 权限没有适配
@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //显示加载等待框
-        webView.registerHandler("UI","showLoading", new JsHandler() {
+        zWebView.registerHandler("UI","showLoading", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 Log.e("zz","showLoading-->" + responseData);
@@ -216,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //隐藏加载等待框
-        webView.registerHandler("UI","hideLoading", new JsHandler() {
+        zWebView.registerHandler("UI","hideLoading", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 Log.e("zz","hideLoading-->" + responseData);
@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //显示toast
-        webView.registerHandler("UI","toast", new JsHandler() {
+        zWebView.registerHandler("UI","toast", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 Log.e("zz","toast-->" + responseData);
@@ -248,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //显示确认的弹框
-        webView.registerHandler("UI","alert", new JsHandler() {
+        zWebView.registerHandler("UI","alert", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 Log.e("zz","alert-->" + responseData);
@@ -259,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //显示确认的弹框
-        webView.registerHandler("UI","confirm", new JsHandler() {
+        zWebView.registerHandler("UI","confirm", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 Log.e("zz","confirm-->" + responseData);
@@ -270,7 +270,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //扫二维码功能
-        webView.registerHandler("ScanCode","gotoScanCode", new JsHandler() {
+        zWebView.registerHandler("ScanCode","gotoScanCode", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 Log.e("zz","gotoScanCode-->" + responseData);
@@ -280,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //获取经纬度
-        webView.registerHandler("Location","getLocation", new JsHandler() {
+        zWebView.registerHandler("Location","getLocation", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 Log.e("zz","getLocation-->" + responseData);
@@ -289,21 +289,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //安装app
-        webView.registerHandler("App","appInstalled", new JsHandler() {
+        zWebView.registerHandler("App","appInstalled", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
 
             }
         });
         //打开app
-        webView.registerHandler("App","openApp", new JsHandler() {
+        zWebView.registerHandler("App","openApp", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
 
             }
         });
         //退出
-        webView.registerHandler("App","exit", new JsHandler() {
+        zWebView.registerHandler("App","exit", new JsHandler() {
             @Override
             public void onJsHandler(String responseData, CallBackFunction function) {
                 Log.e("zz","exit-->" + responseData);
@@ -314,9 +314,9 @@ public class MainActivity extends AppCompatActivity {
 
         String url =  getResources().getString(MResource.getString(this,"ServiceUrl"));
         if (TextUtils.isEmpty(url)) {
-            webView.loadUrl("http://t.h.xgame999.com/appservice.html");
+            zWebView.loadUrl("http://t.h.xgame999.com/appservice.html");
         } else {
-            webView.loadUrl(url);
+            zWebView.loadUrl(url);
         }
 
 
@@ -330,9 +330,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK ){
-            if (webView.canGoBack()){
+            if (zWebView != null && zWebView.canGoBack()) {
+                zWebView.goBack();
+
                 Log.e("zz","webview关闭");
-                webView.goBack();
+                zWebView.goBack();
                 return true;
             }
         }
@@ -343,18 +345,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        if( webView!=null) {
-            ViewParent parent = webView.getParent();
-            if (parent != null) {
-                ((ViewGroup) parent).removeView(webView);
-            }
-            webView.stopLoading();
-            // 退出时调用此方法，移除绑定的服务，否则某些特定系统会报错
-            webView.getSettings().setJavaScriptEnabled(false);
-            webView.clearHistory();
-            webView.clearView();
-            webView.removeAllViews();
-            webView.destroy();
+        if (zWebView != null){
+            zWebView.destroy();
         }
         super.onDestroy();
 

@@ -7,4 +7,9 @@
     android:id="@+id/flv_web"
     tools:context=".MainActivity">
 
+    <com.zhanke.webview.ZkWebview
+        android:id="@+id/zWebView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </FrameLayout>
