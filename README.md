@@ -13,7 +13,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.zhansection:zwebview:1.0.3'
+    implementation 'com.github.zhansection:zwebview:1.0.4'
 }
 ```
 
