@@ -19,7 +19,13 @@ dependencies {
 
 ## Usage
 
-Android To prevent WebView memory leak, use dynamic addition
+Initialize X5WebView in Application
+
+```
+
+X5Web.init(getApplicationContext());
+
+```
 
 Create a `ZkWebView` instance :
 
@@ -43,16 +49,6 @@ Destroy webview
 @Override
 protected void onDestroy() {
     if( webView!=null) {
-        ViewParent parent = webView.getParent();
-        if (parent != null) {
-            ((ViewGroup) parent).removeView(webView);
-        }
-        webView.stopLoading();
-        // 退出时调用此方法，移除绑定的服务，否则某些特定系统会报错
-        webView.getSettings().setJavaScriptEnabled(false);
-        webView.clearHistory();
-        webView.clearView();
-        webView.removeAllViews();
         webView.destroy();
     }
     super.onDestroy();
